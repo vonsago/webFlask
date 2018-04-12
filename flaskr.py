@@ -91,7 +91,6 @@ def signup():
     return render_template('signup.html', error=error)
 
 
-
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
