@@ -39,6 +39,7 @@ def show_entries():
     entry = [dict(title='第{}个用户'.format(str(row[0]+1)), text=row[1][0]) for row in enumerate(cur.fetchall())]
     db.close()
     return render_template('show_entries.html', entries=entry)
+
 @app.route('/show_student')
 def show_student():
     db = connect_db()
@@ -67,13 +68,31 @@ def add_entry():
             flash(e)
     return redirect(url_for('show_student'))
 
-@app.route('/', methods=['POST'])
+@app.route('/delete_info', methods=['GET','POST'])
 def delete_info():
-    pass
+    if request.method == 'POST':
+        db = connect_db()
+        cur = db.cursor()
+        sql = 'delete from student_info where s_num = {}'
+        cur.execute(sql.format(request.form['number']))
+        db.commit()
+        db.close()
+        flash('Delete successfully')
+        return redirect(url_for('show_student'))
+    return render_template('delete_info.html')
 
-@app.route('/', methods=['POST'])
+@app.route('/update_info', methods=['GET','POST'])
 def update_info():
-    pass
+    if request.method == 'POST':
+        sql = "update student_info set s_name='{0}',s_score='{1}' where s_num='{2}' "
+        db = connect_db()
+        cur = db.cursor()
+        cur.execute(sql.format(request.form['name'],request.form['score'],request.form['number']))
+        db.commit()
+        db.close()
+        flash('Update successfully') 
+        return redirect(url_for('show_student'))
+    return render_template('update_info.html')  
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

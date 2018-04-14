@@ -13,14 +13,16 @@
         list-style: none;
     }
     </style>
+   <ul class=entries>
+     <li><a href="{{ url_for('delete_info') }}">[Delete]</a></li>
+     <li><a href="{{ url_for('update_info') }}">[Update]</a></li> 
+   </ul>
    <ul class = entries>  
-       <li>学号</li><li>名字</li><li>分数</li><li>删除</li><li>更新</li>
+       <li>学号</li><li>名字</li><li>分数</li>
    </ul>
   {% for entry in entries %}
   <ul class = entries>
       <li>{{ entry.number }}</li><li>{{entry.name}}</li><li>{{entry.score}}</li>
-      <li><a href="{{ url_for('delete_info') }}">[Delete]</a></li>
-      <li><a href="{{ url_for('update_info') }}">[Update]</a></li> 
   </ul>
   {% endfor %} 
 {% endblock %}

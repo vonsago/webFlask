@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action="{{ url_for('update_info') }}" method=post class=add-entry>
+  <dl>
+    <dt>Number:
+    <dd><input type=text size=30 name=number>
+    <dt>Name:
+    <dd><input type=text size=30 name=name>
+    <dt>Score:
+    <dd><input type=text size=30 name=score>
+    <dd><input type=submit value=Update>
+  </dl>
+</form>
+{% endblock %}
