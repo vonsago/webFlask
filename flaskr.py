@@ -67,6 +67,14 @@ def add_entry():
             flash(e)
     return redirect(url_for('show_student'))
 
+@app.route('/', methods=['POST'])
+def delete_info():
+    pass
+
+@app.route('/', methods=['POST'])
+def update_info():
+    pass
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
