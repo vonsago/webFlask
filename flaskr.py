@@ -84,10 +84,10 @@ def delete_info():
 @app.route('/update_info', methods=['GET','POST'])
 def update_info():
     if request.method == 'POST':
-        sql = "update student_info set s_name='{0}',s_score='{1}' where s_num='{2}' "
+        sql = "update student_info set s_name='{0}',s_score='{1}',s_image='{2}' where s_num='{3}' "
         db = connect_db()
         cur = db.cursor()
-        cur.execute(sql.format(request.form['name'],request.form['score'],request.form['number']))
+        cur.execute(sql.format(request.form['name'],request.form['score'], request.form['image'], request.form['number']))
         db.commit()
         db.close()
         flash('Update successfully') 
@@ -135,7 +135,6 @@ def signup():
             flash('New User post error'+str(e))
         return redirect(url_for('show_entries'))
     return render_template('signup.html', error=error)
-
 
 @app.route('/logout')
 def logout():
