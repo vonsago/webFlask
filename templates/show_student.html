@@ -1,0 +1,19 @@
+{% extends "layout.html" %} 
+{% block body %}
+  <h2>Student</h2>
+  <style type="text/css">
+     ul{
+        clear: both;
+    }
+     li{
+         border: 1px solid black;
+         float: left;
+         list-style: none;
+    }
+    </style>
+  {% for entry in entries %}
+  <ul>
+      <li>{{ entry.number }}</li><li>{{entry.name}}</li><li>{{entry.score}}</li>
+  </ul>
+  {% endfor %} 
+{% endblock %}

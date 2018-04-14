@@ -39,14 +39,33 @@ def show_entries():
     entry = [dict(title='第{}个用户'.format(str(row[0]+1)), text=row[1][0]) for row in enumerate(cur.fetchall())]
     db.close()
     return render_template('show_entries.html', entries=entry)
+@app.route('/show_student')
+def show_student():
+    db = connect_db()
+    cur = db.cursor()
+    cur.execute('select * from student_info')
+    entry = [dict(title='第{}个学生'.format(str(row[0])), name = row[2], number = row[1], score = row[-1]) for row in cur.fetchall()]
+    db.close()
+    return render_template('show_student.html', entries=entry)
 
 @app.route('/add', methods=['POST'])
 def add_entry():
     if not session.get('logged_in'):
         abort(401)
-
-    flash('New entry was successfully posted')
-    return redirect(url_for('show_entries'))
+    error = None
+    db = connect_db()
+    cur = db.cursor()
+    sql='insert into student_info(s_name,s_num, s_score)VALUES(%s,%s,%s)'
+    if request.method == 'POST':
+        try:
+            cur.execute(sql,(request.form['name'],request.form['number'],request.form['score']))
+            db.commit()
+            db.close()
+            flash('New entry was successfully posted')
+        except Exception as e:
+            error = e
+            flash(e)
+    return redirect(url_for('show_student'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
