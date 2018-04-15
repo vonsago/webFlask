@@ -12,8 +12,14 @@ import os
 import pymysql
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
+from werkzeug import secure_filename
+
+UPLOAD_FOLDER = '/Users/vassagovon/myProject/venv3/webapp/static/image'
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = "super secret key"
 
 base_ip = '127.0.0.1'
@@ -28,8 +34,12 @@ def connect_db():
     return db
 
 def insert_db():
-    cur = connect_db()
-    cur.execute('')
+    pass
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
 
 @app.route('/')
 def show_entries():
@@ -84,12 +94,18 @@ def delete_info():
 @app.route('/update_info', methods=['GET','POST'])
 def update_info():
     if request.method == 'POST':
-        sql = "update student_info set s_name='{0}',s_score='{1}',s_image='{2}' where s_num='{3}' "
+        sql = "update student_info set s_name='{0}',s_score='{1}' where s_num='{2}' "
         db = connect_db()
         cur = db.cursor()
-        cur.execute(sql.format(request.form['name'],request.form['score'], request.form['image'], request.form['number']))
+        cur.execute(sql.format(request.form['name'],request.form['score'], request.form['number']))
         db.commit()
         db.close()
+
+        # upload file
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         flash('Update successfully') 
         return redirect(url_for('show_student'))
     return render_template('update_info.html')  
