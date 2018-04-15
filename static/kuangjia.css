@@ -1,0 +1,65 @@
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+body {
+    background-color:#FAF59A;
+    font: 13px/1.5  Arial, Helvetica, sans-serif;
+    margin:0;
+    padding:0;
+    font-family: 黑体;
+    font-size: 12px;
+}
+.rounded{
+    background:url(../image/left-top.gif) top left no-repeat; margin:0px; }
+.rounded h4 {
+    background: 
+        url(../image/right-top.gif) top right no-repeat;
+    padding:20px 0px 10px;
+    margin:0;
+    text-align:center;
+}
+.rounded .main {
+    background: 
+        url(../image/right.gif) top right repeat-y;
+    padding:10px 20px;
+    margin:-2em 0 0 0;
+}
+.rounded .footer {
+    background: 
+        url(../image/left-bottom.gif)  bottom left no-repeat;
+}
+.rounded .footer p {
+    background:url(../image/right-bottom.gif) bottom right no-repeat;
+    display:block;
+    padding:10px 20px 20px;
+    margin:-2em 0 0 0;
+
+}
+#head{
+    margin:0 auto;
+    width:800px;
+    ;
+}
+
+#main{
+    text-align:center;
+    font-size:13px;
+    font-weight:bold;
+}
+#main p{
+    text-align:left;
+    margin-left:200px;
+}
+.rounded.table{
+    text-align: left;    
+}
+.warp_table { text-align: center;border-collapse:collapse; width:550px; border:1px solid #4d9ab0}
+.warp_table td {border:1px solid #4d9ab0 }
+.warp_table td {  font-size:  12px; font-weight:  bolder;font-style: inherit}

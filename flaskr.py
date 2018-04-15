@@ -45,7 +45,7 @@ def show_student():
     db = connect_db()
     cur = db.cursor()
     cur.execute('select * from student_info')
-    entry = [dict(title='第{}个学生'.format(str(row[0])), name = row[2], number = row[1], score = row[-1]) for row in cur.fetchall()]
+    entry = [dict(title='第{}个学生'.format(str(row[0])), name = row[2], number = row[1], score = row[3], image=row[4]) for row in cur.fetchall()]
     db.close()
     return render_template('show_student.html', entries=entry)
 
