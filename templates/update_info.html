@@ -1,20 +1,64 @@
-{% extends "layout.html" %}
-{% block body %}
-<form action="{{ url_for('update_info') }}" method=post class=add-entry enctype=multipart/form-data>
-  <dl>
-    <dt>Number:
-    <dd><input type=text size=30 name=number>
-    <dt>Name:
-    <dd><input type=text size=30 name=name>
-    <dt>Score:
-    <dd><input type=text size=30 name=score>
-    <dt>Title:
-    <dd><input type=text size=30 name=title>
-    <dt>Text:
-    <dd><textarea name=text rows=5 cols=40></textarea>
-    <dt>Image:
-    <dd><input type=file name=file>
-    <dd><input type=submit value=Update>
-  </dl>
-</form>
-{% endblock %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <title>文件上传</title>
+        <link href="{{url_for('static', filename='kuangjia.css')}}" rel="stylesheet" type="text/css" ></link>       
+    </head>
+  
+    <body onLoad="">
+        <div class="rounded" id="head">
+            <h4>欢迎进入文件上传页面</h4>
+            <div class="main" id="main">     
+                
+             <form action="{{ url_for('update_info') }}" method=post class=add-entry enctype=multipart/form-data>
+
+                    <table>                                
+                        <tr>
+                            <td style=" text-align: right">商品名称：</td>
+                            <td style=" text-align: left"><input type="text" name="bookname" id="bookname" class="table" /></td>
+                        </tr>
+                        <tr>
+                            <td style=" text-align: right">简要描述：</td>
+                            <td style=" text-align: left"><textarea name="bookcontent" cols="55" rows="4" id="bookcontent" ></textarea> </td>
+                        </tr>
+                        <tr>
+                            <td style=" text-align: right">关键字-1：</td>
+                            <td style=" text-align: left"><input type="text" name="key1" type="text"maxlength="20"></td>
+                        </tr>
+                        <tr>
+                            <td style=" text-align: right">关键字-2：</td>
+                            <td style=" text-align: left"><input type="text"  name="key2" type="text"maxlength="20"></td>
+                        </tr>     
+                                           
+                        <tr>
+                            <td style=" text-align: right">商品类别：</td>
+                            <td style=" text-align: left">
+                                <input type="radio" name="classname">计算机 
+                                <input type="radio" name="classname">英语 
+                                <input type="radio" name="classname">数理系
+                                <input type="radio" name="classname">体育
+                                <input type="radio" name="classname">艺术
+                                <input type="radio" name="classname">机械
+                               
+                            </td>
+                        </tr>                        
+                        <tr>
+                            <td style=" text-align: right">选择图片：</td>
+                            <td style=" text-align: left"><input type="file" name="file"  ></td>                         
+                        </tr>                                                
+                       </table>
+                     
+                    <p style="text-align:left; margin-left:300px;">
+                        <input type="submit" name="save" class="btn_grey" value="提交"/>
+                        <span style="margin-left:50px;"> <input type="reset" name="re" class="btn_grey" value="重置" /></span>
+                    </p>
+                </form>
+            </div>
+            <div class="footer"><p></p></div>
+        </div>             
+                            
+    </body>
+</html>
+

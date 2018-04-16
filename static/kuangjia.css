@@ -17,26 +17,26 @@ body {
     font-size: 12px;
 }
 .rounded{
-    background:url(../image/left-top.gif) top left no-repeat; margin:0px; }
+    background:url(./image/left-top.gif) top left no-repeat; margin:0px; }
 .rounded h4 {
     background: 
-        url(../image/right-top.gif) top right no-repeat;
+        url(./image/right-top.gif) top right no-repeat;
     padding:20px 0px 10px;
     margin:0;
     text-align:center;
 }
 .rounded .main {
     background: 
-        url(../image/right.gif) top right repeat-y;
+        url(./image/right.gif) top right repeat-y;
     padding:10px 20px;
     margin:-2em 0 0 0;
 }
 .rounded .footer {
     background: 
-        url(../image/left-bottom.gif)  bottom left no-repeat;
+        url(./image/left-bottom.gif)  bottom left no-repeat;
 }
 .rounded .footer p {
-    background:url(../image/right-bottom.gif) bottom right no-repeat;
+    background:url(./image/right-bottom.gif) bottom right no-repeat;
     display:block;
     padding:10px 20px 20px;
     margin:-2em 0 0 0;
