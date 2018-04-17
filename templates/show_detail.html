@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>Hello World!</h1>
+        <table border=1 bordercolor=red align=center>
+            <tr>
+		<td>编号</td>
+		<td>商品名称</td>
+		<td>商品描述</td>
+		<td>商品关键字1</td>
+                      <td>商品关键字2</td>
+                      <td>商品类别</td>
+                      <td>商品图片</td>                
+            </tr>
+        <% for entry in entries %>
+               <tr>
+                   <td>{{  }}</td>
+                   <td>{{  }}</td>
+                   <td>{{  }}</td>
+                   <td>{{  }}</td>
+                   <td>{{  }}</td>    
+                   <td><img src="../static/image/timg.jpeg"/></td>
+                    </tr>
+            <% endfor %>
+        </table>        
+    </body>
+</html>
+
