@@ -1,31 +1,41 @@
+
 <!DOCTYPE html>
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link href="css/kuangjia.css" rel="stylesheet" type="text/css" ></link>  
     </head>
-    <body>
-        <h1>Hello World!</h1>
-        <table border=1 bordercolor=red align=center>
-            <tr>
-		<td>商品名称</td>
-		<td>商品描述</td>
-		<td>商品关键字1</td>
-                      <td>商品关键字2</td>
-                      <td>商品类别</td>
-                      <td>商品图片</td>                
-            </tr>
-            {% for entry in entries %}
-            <tr>
-            <td>{{ entry.name }}</td>
-            <td>{{ entry.message }}</td> 
-            <td>{{ entry.key1 }}</td> 
-            <td>{{ entry.key2 }}</td> 
-            <td>{{ entry.classname }}</td> 
-            <td><img src="{{entry.picname}}" style="height:100px;weight:100px"></td>
-            {% endfor %} 
-        </table>        
+    <body style="background: olive;">
+         <div class="rounded" id="head">
+             <h4>Hello World!</h4>
+        <div class="main" id="main">     
+                 <div class="left" id="left">   
+        <table border=1px bordercolor=red align=center border-radius:10px>
+          <td>商品名称</td>
+           <td>商品描述</td>                                                            
+           <td>商品关键字1</td>                                                         
+                         <td>商品关键字2</td>
+                         <td>商品类别</td>
+                         <td>商品图片</td>                
+               </tr>                                                                    
+               {% for entry in entries %}
+              <tr>                
+             <td>{{ entry.name }}</td>
+             <td>{{ entry.message }}</td> 
+              <td>{{ entry.key1 }}</td> 
+              <td>{{ entry.key2 }}</td>                                                
+              <td>{{ entry.classname }}</td>                                           
+              <td><img src="{{entry.picname}}" style="height:100px;weight:100px"></td> 
+              {% endfor %} 
+        </table>   
+         </div>
+            </div>
+      
+            <div class="footer">
+                <p></p>
+            </div>
+          </div>
     </body>
 </html>
-

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="{{url_for('static', filename='kuangjia.css')}}" rel="stylesheet" type="text/css" ></link>       
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>Hello World!</h1>
+        <table border=1 bordercolor=red align=center>
+            <tr>
+		<td>商品名称</td>
+		<td>商品描述</td>
+		<td>商品关键字1</td>
+                      <td>商品关键字2</td>
+                      <td>商品类别</td>
+                      <td>商品图片</td>                
+            </tr>
+            {% for entry in entries %}
+            <tr>
+            <td>{{ entry.name }}</td>
+            <td>{{ entry.message }}</td> 
+            <td>{{ entry.key1 }}</td> 
+            <td>{{ entry.key2 }}</td> 
+            <td>{{ entry.classname }}</td> 
+            <td><img src="{{entry.picname}}" style="height:100px;weight:100px"></td>
+            {% endfor %} 
+        </table>        
+    </body>
+</html>
+
