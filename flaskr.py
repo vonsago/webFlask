@@ -59,6 +59,15 @@ def show_student():
     db.close()
     return render_template('show_student.html', entries=entry)
 
+@app.route('/show_detail')
+def show_detail():
+    db = connect_db()
+    cur = db.cursor()
+    cur.execute('select * from shop')
+    entry = [dict(name = row[0],message = row[1], key1=row[2],key2=row[3],classname=row[4],picname='../static/image/'+row[5]) for row in cur.fetchall()]
+    db.close()
+    return render_template('show_detail.html', entries=entry)  
+
 @app.route('/add', methods=['POST'])
 def add_entry():
     if not session.get('logged_in'):
@@ -93,21 +102,31 @@ def delete_info():
 
 @app.route('/update_info', methods=['GET','POST'])
 def update_info():
+    dic = {'1':'计算机','2':'英语','3':'数理系','4':'体育','5':'艺术','6':'机械'}
     if request.method == 'POST':
-        sql = "update student_info set s_name='{0}',s_score='{1}' where s_num='{2}' "
-        db = connect_db()
-        cur = db.cursor()
-        cur.execute(sql.format(request.form['name'],request.form['score'], request.form['number']))
-        db.commit()
-        db.close()
-
-        # upload file
+        name = request.form['bookname']
+        content = request.form['bookcontent']
+        key1 = request.form['key1']
+        key2 = request.form['key2']
+        classname = request.values.getlist('classname')[0]
+        classname = dic[ classname ]
+        picname = ''
+        #update file
         file = request.files['file']
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
+            picname = filename
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        sql='insert into shop(name,message,key1,key2,classname,picture)VALUES(%s,%s,%s,%s,%s,%s)'
+        #sql = "update student_info set s_name='{0}',s_score='{1}' where s_num='{2}' "
+        db = connect_db()
+        cur = db.cursor()
+        cur.execute(sql,(name,content,key1,key2,classname,picname))
+        db.commit()
+        db.close()
         flash('Update successfully') 
-        return redirect(url_for('show_student'))
+        return redirect(url_for('show_detail'))
     return render_template('update_info.html')  
 
 @app.route('/login', methods=['GET', 'POST'])
