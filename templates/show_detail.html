@@ -16,16 +16,15 @@
                       <td>商品类别</td>
                       <td>商品图片</td>                
             </tr>
-        <% for entry in entries %>
-               <tr>
-                   <td>{{ entry.name }}</td>
-                   <td>{{ entry.message }}</td>
-                   <td>{{ entry.key1 }}</td>
-                   <td>{{ entry.key2 }}</td>
-                   <td>{{ entry.classname }}</td>    
-                   <td><img src={{entry.picname}}"></td>
-                    </tr>
-            <% endfor %>
+            {% for entry in entries %}
+            <tr>
+            <td>{{ entry.name }}</td>
+            <td>{{ entry.message }}</td> 
+            <td>{{ entry.key1 }}</td> 
+            <td>{{ entry.key2 }}</td> 
+            <td>{{ entry.classname }}</td> 
+            <td><img src="{{entry.picname}}" style="height:100px;weight:100px"></td>
+            {% endfor %} 
         </table>        
     </body>
 </html>
