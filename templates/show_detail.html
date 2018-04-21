@@ -9,7 +9,6 @@
         <h1>Hello World!</h1>
         <table border=1 bordercolor=red align=center>
             <tr>
-		<td>编号</td>
 		<td>商品名称</td>
 		<td>商品描述</td>
 		<td>商品关键字1</td>
@@ -19,12 +18,12 @@
             </tr>
         <% for entry in entries %>
                <tr>
-                   <td>{{  }}</td>
-                   <td>{{  }}</td>
-                   <td>{{  }}</td>
-                   <td>{{  }}</td>
-                   <td>{{  }}</td>    
-                   <td><img src="../static/image/timg.jpeg"/></td>
+                   <td>{{ entry.name }}</td>
+                   <td>{{ entry.message }}</td>
+                   <td>{{ entry.key1 }}</td>
+                   <td>{{ entry.key2 }}</td>
+                   <td>{{ entry.classname }}</td>    
+                   <td><img src={{entry.picname}}"></td>
                     </tr>
             <% endfor %>
         </table>        
