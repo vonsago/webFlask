@@ -12,12 +12,13 @@
       <li>
           <a href="{{ url_for('add_entry') }}">添加新同学</a>
         </li>
-      <h2>公告:</h2>
-      <li><a>开发者:冯宇飞</a></li>
     </ul>
   {% else %}
   <h2>欢迎使用学生管理系统</h2>
   <li>请用管理员账号登录
   <li>或者注册新账号
+  <h2>公告:</h2>
+  <li>开发者:冯宇飞</li>
+  <li>联系邮邮箱f811194414@gmail.com
   {% endif %}
 {% endblock %}

@@ -68,7 +68,7 @@ def show_detail():
     db.close()
     return render_template('show_detail.html', entries=entry)  
 
-@app.route('/add', methods=['POST'])
+@app.route('/add', methods=['POST','GET'])
 def add_entry():
     if not session.get('logged_in'):
         abort(401)
