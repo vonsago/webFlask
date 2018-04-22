@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>查找同学</h2>
+<a>tips:输入学号精确查询，只输入名字模糊查询</a>
+<form action="/find_info" method=post class=add-entry>
+      <dl>
+        <dt>Name:
+        <dd><input type=text size=30 name=name>
+        <dt>Number:
+        <dd><input name=number size=30 type=text>
+        <dd><input type=submit value=find>
+      </dl>
+    </form>
+
+{% if entries[0]!='get' %}
+{% for entry in entries %}
+<li>编号:<a>{{ entry.num }}</a></li><li>学号:<a>{{entry.snum}}</a></li><li>姓名:<a>{{entry.name}}</a></li><li>分数:<a>{{entry.score}}</a></li><li>图片:<a><img src = "{{entry.image}}"  width="100" height="100"a></li>
+</ul>
+{% endfor %}
+{% endif %}
+{% endblock %}  
