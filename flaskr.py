@@ -77,22 +77,25 @@ def add_entry():
     cur = db.cursor()
     sql='insert into student_info(s_name,s_num, s_score, s_image)VALUES(%s,%s,%s,%s)'
     if request.method == 'POST':
-        try:
-            picname = ''
-            #update file
-            file = request.files['file']
-            if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
-                picname = filename
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        if request.form['classname'] == 'yes':
+            flash('Students were successfully added')
+        else:
+            try:
+                picname = ''
+                #update file
+                file = request.files['file']
+                if file and allowed_file(file.filename):
+                    filename = secure_filename(file.filename)
+                    picname = filename
+                    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-            cur.execute(sql,(request.form['name'],request.form['number'],request.form['score'],picname))
-            db.commit()
-            db.close()
-            flash('New entry was successfully posted')
-        except Exception as e:
-            error = e
-            flash(e)
+                cur.execute(sql,(request.form['name'],request.form['number'],request.form['score'],picname))
+                db.commit()
+                db.close()
+                flash('New Student was successfully added')
+            except Exception as e:
+                error = e
+                flash(e)
     return render_template('add_new.html')
 
 @app.route('/delete_info', methods=['GET','POST'])
@@ -105,7 +108,7 @@ def delete_info():
         db.commit()
         db.close()
         flash('Delete successfully')
-        return redirect(url_for('show_student'))
+        return redirect(url_for('find_info'))
     return render_template('delete_info.html')
 
 @app.route('/update_info', methods=['GET','POST'])
@@ -217,6 +220,7 @@ def find_info():
 
 @app.route('/find_class')
 def find_class():
+    flash('hold on....')
     pass
 
 if __name__ == '__main__':

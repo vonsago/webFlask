@@ -4,6 +4,11 @@
   {% if session.logged_in %}
     <form action="{{ url_for('add_entry') }}" method=post class=add-entry  enctype="multipart/form-data">
       <dl>
+        <dt>通过文件:
+        <dd><input type="radio" name="classname" value='yes'>Yes<input type="radio" name="classname" value='no' checked/>No
+        <dt>csv文件:
+        <dd><input type="file" name="file">
+        <dt>如果选择yes可以跳过下面信息输入直接提交
         <dt>Name:
         <dd><input type=text size=30 name=name>
         <dt>Number:

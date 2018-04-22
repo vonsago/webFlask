@@ -1,6 +1,25 @@
 {% extends "layout.html" %}
 {% block body %}
+<h2>更多操作</h2
+<dt class=entries>
+   <dd><a href="{{ url_for('delete_info') }}">[Delete]</a><a href="{{ url_for('update_info') }}">[Update]</a></dd>
+   </dt>
+</br>
+
 <h2>查找同学</h2>
+  <style type="text/css">
+     ul{
+        clear: both;
+    }
+     li{
+        height: 20px;
+        width: 100px;
+        float: left;
+        list-style: none;
+    }
+    </style>
+   <ul class=entries>
+
 <a>tips:输入学号精确查询，只输入名字模糊查询</a>
 <form action="/find_info" method=post class=add-entry>
       <dl>
@@ -14,14 +33,9 @@
 
 {% if entries[0]!='get' %}
 {% for entry in entries %}
-<li>编号:<a>{{ entry.num }}</a></li><li>学号:<a>{{entry.snum}}</a></li><li>姓名:<a>{{entry.name}}</a></li><li>分数:<a>{{entry.score}}</a></li><li>图片:<a><img src = "{{entry.image}}"  width="100" height="100"a></li>
+<li>编号:</br><a>{{ entry.num }}</a></li><li>学号:</br><a>{{entry.snum}}</a></li><li>姓名:</br><a>{{entry.name}}</a></li><li>分数:</br><a>{{entry.score}}</a></li><li>图片:</br><a><img src = "{{entry.image}}"  width="100" height="100"a></li>
 </ul>
 {% endfor %}
 {% endif %}
-<h2>更多操作</h2
-   <ul class=entries>
-     <li><a href="{{ url_for('delete_info') }}">[Delete]</a></li>
-     <li><a href="{{ url_for('update_info') }}">[Update]</a></li> 
-   </ul>
 
 {% endblock %}  
