@@ -85,7 +85,7 @@ def add_entry():
         except Exception as e:
             error = e
             flash(e)
-    return redirect(url_for('show_student'))
+    return render_template('add_new.html')
 
 @app.route('/delete_info', methods=['GET','POST'])
 def delete_info():
