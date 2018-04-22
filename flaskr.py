@@ -75,10 +75,18 @@ def add_entry():
     error = None
     db = connect_db()
     cur = db.cursor()
-    sql='insert into student_info(s_name,s_num, s_score)VALUES(%s,%s,%s)'
+    sql='insert into student_info(s_name,s_num, s_score, s_image)VALUES(%s,%s,%s,%s)'
     if request.method == 'POST':
         try:
-            cur.execute(sql,(request.form['name'],request.form['number'],request.form['score']))
+            picname = ''
+            #update file
+            file = request.files['file']
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                picname = filename
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+            cur.execute(sql,(request.form['name'],request.form['number'],request.form['score'],picname))
             db.commit()
             db.close()
             flash('New entry was successfully posted')
