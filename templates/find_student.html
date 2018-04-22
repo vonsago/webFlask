@@ -18,4 +18,10 @@
 </ul>
 {% endfor %}
 {% endif %}
+<h2>更多操作</h2
+   <ul class=entries>
+     <li><a href="{{ url_for('delete_info') }}">[Delete]</a></li>
+     <li><a href="{{ url_for('update_info') }}">[Update]</a></li> 
+   </ul>
+
 {% endblock %}  

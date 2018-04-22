@@ -188,9 +188,9 @@ def logout():
 @app.route('/find_info',methods = ['GET','POST'])
 def find_info():
     if request.method == 'POST':
-        sql = 'select * from student_info where s_name = {} and s_num={}'
-        sql1 = 'select * from student_info where s_name = {}'
-        sql2 = 'select * from student_info where s_num = {}'
+        sql = 'select * from student_info where s_name = "{}" and s_num="{}"'
+        sql1 = 'select * from student_info where s_name = "{}"'
+        sql2 = 'select * from student_info where s_num = "{}"'
         db = connect_db()
         cur = db.cursor()
 
@@ -200,15 +200,18 @@ def find_info():
             db.close()
             flash('请输入搜索关键词')
             return render_template('find_student.html',entries=['get'])
-        if name != '' and number != '':
-            cur.execute(sql.format(name,number))
-        elif name !='':
-            cur.execute(sql1.format(name))
-        elif number != '':
-            cur.execute(sql2.format(number))
-        entry = [dict(num=row[0],snum=row[1],name=row[2],score=row[3],image='../static/image/'+row[4]) for row in cur.fetchall()]
-        flash('查询成功')
-        return render_template('find_student.html', entries=entry)
+        try:
+            if name != '' and number != '':
+                cur.execute(sql.format(name,number))
+            elif name !='':
+                cur.execute(sql1.format(name))
+            elif number != '':
+                cur.execute(sql2.format(number))
+            entry = [dict(num=row[0],snum=row[1],name=row[2],score=row[3],image='../static/image/'+row[4]) for row in cur.fetchall()]
+            flash('查询成功')
+            return render_template('find_student.html', entries=entry)
+        except Exception as e:
+            flash('查询失败'+str(e))
     return render_template('find_student.html',entries=['get'])
 
 
