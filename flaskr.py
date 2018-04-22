@@ -177,6 +177,14 @@ def logout():
     flash('You were logged out')
     return redirect(url_for('show_entries'))
 
+@app.route('/find_info')
+def find_info():
+    pass
+
+@app.route('/find_class')
+def find_class():
+    pass
+
 if __name__ == '__main__':
     app.debug = True
     app.run()

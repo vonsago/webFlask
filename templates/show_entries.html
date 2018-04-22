@@ -1,23 +1,23 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
-    <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
-      <dl>
-        <dt>Name:
-        <dd><input type=text size=30 name=name>
-        <dt>Number:
-        <dd><input name=number size=30 type=text>
-        <dt>Score
-        <dd><input name=score size=30 type=text>
-        <dd><input type=submit value=Add>
-      </dl>
-    </form>
-  {% endif %}
   <ul class=entries>
-  {% for entry in entries %}
-    <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
+      <h2>所有功能:</h2>
+      <li>
+          <a href="{{ url_for('find_info') }}">学生信息查询</a>
+      </li>
+      <li>
+          <a href="{{ url_for('find_class') }}">课程表查询</a>
+      </li>
+      <li>
+          <a href="{{ url_for('add_entry') }}">添加新同学</a>
+        </li>
+      <h2>公告:</h2>
+      <li><a>开发者:冯宇飞</a></li>
+    </ul>
   {% else %}
-    <li><em>Unbelievable.  No entries here so far</em>
-  {% endfor %}
-  </ul>
+  <h2>欢迎使用学生管理系统</h2>
+  <li>请用管理员账号登录
+  <li>或者注册新账号
+  {% endif %}
 {% endblock %}
