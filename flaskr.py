@@ -191,12 +191,25 @@ def logout():
 @app.route('/find_info',methods = ['GET','POST'])
 def find_info():
     if request.method == 'POST':
-        sql = 'select * from student_info where s_name = "{}" and s_num="{}"'
-        sql1 = 'select * from student_info where s_name = "{}"'
-        sql2 = 'select * from student_info where s_num = "{}"'
         db = connect_db()
         cur = db.cursor()
 
+        if request.form['classname']=='yes':
+            csvFile = open("~/Downloads/students.csv", "w")
+            fileheader = ['编号','学号','名字','分数','照片']
+            dict_writer = csv.DictWriter(csvFile, fileheader)
+            dict_writer.writerow(dict(zip(fileheader, fileheader)))
+            cur.execute('select * from student_info')
+            for row in cur.fetchall():
+                dict_writer.writerow(dict(zip(fileheader, row)))
+            flash('导出成功')
+            return render_template('find_student.html', entries=entry)
+
+
+        sql = 'select * from student_info where s_name = "{}" and s_num="{}"'
+        sql1 = 'select * from student_info where s_name = "{}"'
+        sql2 = 'select * from student_info where s_num = "{}"'
+        
         name = request.form['name']
         number = request.form['number']
         if name == '' and number == '':

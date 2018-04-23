@@ -2,7 +2,7 @@
 {% block body %}
 <h2>更多操作</h2
 <dt class=entries>
-   <dd><a href="{{ url_for('delete_info') }}">[Delete]</a><a href="{{ url_for('update_info') }}">[Update]</a></dd>
+   <dd><a href="{{ url_for('delete_info') }}">[Delete]</a>      <a href="{{ url_for('update_info') }}">[Update]</a></dd>
    </dt>
 </br>
 
@@ -23,6 +23,8 @@
 <a>tips:输入学号精确查询，只输入名字模糊查询</a>
 <form action="/find_info" method=post class=add-entry>
       <dl>
+        <dt>导出到文件:
+        <input type="radio" name="classname" value='yes'>Yes<input type="radio" name="classname" value='no' checked/>No
         <dt>Name:
         <dd><input type=text size=30 name=name>
         <dt>Number:
