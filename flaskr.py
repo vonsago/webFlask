@@ -10,12 +10,13 @@
 # all the imports
 import os
 import pymysql
+import csv
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 from werkzeug import secure_filename
 
 UPLOAD_FOLDER = '/Users/vassagovon/myProject/venv3/webapp/static/image'
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'csv'])
 
 app = Flask(__name__)
 
@@ -75,9 +76,22 @@ def add_entry():
     error = None
     db = connect_db()
     cur = db.cursor()
-    sql='insert into student_info(s_name,s_num, s_score, s_image)VALUES(%s,%s,%s,%s)'
+    sql='insert into student_info(s_num,s_name, s_score, s_image)VALUES(%s,%s,%s,%s)'
     if request.method == 'POST':
         if request.form['classname'] == 'yes':
+            file = request.files['csvfile']
+            filename = ''
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                picname = filename
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            with open(app.config['UPLOAD_FOLDER']+'/'+filename) as f:
+                f_csv = csv.reader(f)
+                headers = next(f_csv)
+                for row in f_csv:
+                    cur.execute(sql,(row[1],row[2],row[3],row[4]))
+                db.commit()
+                db.close()
             flash('Students were successfully added')
         else:
             try:
@@ -89,7 +103,7 @@ def add_entry():
                     picname = filename
                     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-                cur.execute(sql,(request.form['name'],request.form['number'],request.form['score'],picname))
+                cur.execute(sql,(request.form['number'],request.form['name'],request.form['score'],picname))
                 db.commit()
                 db.close()
                 flash('New Student was successfully added')
@@ -195,7 +209,7 @@ def find_info():
         cur = db.cursor()
 
         if request.form['classname']=='yes':
-            csvFile = open("~/Downloads/students.csv", "w")
+            csvFile = open("/Users/vassagovon/Downloads/students.csv", "w")
             fileheader = ['编号','学号','名字','分数','照片']
             dict_writer = csv.DictWriter(csvFile, fileheader)
             dict_writer.writerow(dict(zip(fileheader, fileheader)))
@@ -203,7 +217,7 @@ def find_info():
             for row in cur.fetchall():
                 dict_writer.writerow(dict(zip(fileheader, row)))
             flash('导出成功')
-            return render_template('find_student.html', entries=entry)
+            return render_template('find_student.html', entries=['get'])
 
 
         sql = 'select * from student_info where s_name = "{}" and s_num="{}"'
