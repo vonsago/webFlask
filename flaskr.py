@@ -223,7 +223,7 @@ def find_info():
         sql = 'select * from student_info where s_name = "{}" and s_num="{}"'
         sql1 = 'select * from student_info where s_name = "{}"'
         sql2 = 'select * from student_info where s_num = "{}"'
-        
+
         name = request.form['name']
         number = request.form['number']
         if name == '' and number == '':
@@ -248,6 +248,7 @@ def find_info():
 @app.route('/find_class')
 def find_class():
     flash('hold on....')
+    return render_template('class.html')
     pass
 
 if __name__ == '__main__':
