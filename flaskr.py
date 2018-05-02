@@ -218,8 +218,6 @@ def find_info():
                 dict_writer.writerow(dict(zip(fileheader, row)))
             flash('导出成功')
             return render_template('find_student.html', entries=['get'])
-
-
         sql = 'select * from student_info where s_name = "{}" and s_num="{}"'
         sql1 = 'select * from student_info where s_name = "{}"'
         sql2 = 'select * from student_info where s_num = "{}"'
