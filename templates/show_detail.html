@@ -13,17 +13,19 @@
         <div class="main" id="main">     
                  <div class="left" id="left">   
         <table border=1px bordercolor=red align=center border-radius:10px>
-          <td>商品名称</td>
-           <td>商品描述</td>                                                            
-           <td>商品关键字1</td>                                                         
-                         <td>商品关键字2</td>
-                         <td>商品类别</td>
-                         <td>商品图片</td>                
+          <td>名字</td>
+          <td>简要信息</td>
+           <td>学号</td>                                                            
+           <td>关键字1</td>                                                         
+                         <td>关键字2</td>
+                         <td>专业</td>
+                         <td>图片</td>                
                </tr>                                                                    
                {% for entry in entries %}
               <tr>                
              <td>{{ entry.name }}</td>
              <td>{{ entry.message }}</td> 
+             <td>{{ entry.num }}</td> 
               <td>{{ entry.key1 }}</td> 
               <td>{{ entry.key2 }}</td>                                                
               <td>{{ entry.classname }}</td>                                           

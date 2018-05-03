@@ -65,7 +65,7 @@ def show_detail():
     db = connect_db()
     cur = db.cursor()
     cur.execute('select * from shop')
-    entry = [dict(name = row[0],message = row[1], key1=row[2],key2=row[3],classname=row[4],picname='../static/image/'+row[5]) for row in cur.fetchall()]
+    entry = [dict(name = row[0],message = row[1],num=row[2], key1=row[3],key2=row[4],classname=row[5],picname='../static/image/'+row[6]) for row in cur.fetchall()]
     db.close()
     return render_template('show_detail.html', entries=entry)  
 
@@ -133,6 +133,7 @@ def update_info():
         content = request.form['bookcontent']
         key1 = request.form['key1']
         key2 = request.form['key2']
+        num = request.form['booknum']
         classname = request.values.getlist('classname')[0]
         classname = dic[ classname ]
         picname = ''
@@ -143,7 +144,7 @@ def update_info():
             picname = filename
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-        sql='insert into shop(name,message,key1,key2,classname,picture)VALUES(%s,%s,%s,%s,%s,%s)'
+        sql='insert into student_detail(name,message,num,key1,key2,classname,picture)VALUES(%s,%s,%s,%s,%s,%s,%s)'
         #sql = "update student_info set s_name='{0}',s_score='{1}' where s_num='{2}' "
         db = connect_db()
         cur = db.cursor()
