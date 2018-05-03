@@ -64,7 +64,7 @@ def show_student():
 def show_detail():
     db = connect_db()
     cur = db.cursor()
-    cur.execute('select * from shop')
+    cur.execute('select * from student_detail')
     entry = [dict(name = row[0],message = row[1],num=row[2], key1=row[3],key2=row[4],classname=row[5],picname='../static/image/'+row[6]) for row in cur.fetchall()]
     db.close()
     return render_template('show_detail.html', entries=entry)  
@@ -148,7 +148,7 @@ def update_info():
         #sql = "update student_info set s_name='{0}',s_score='{1}' where s_num='{2}' "
         db = connect_db()
         cur = db.cursor()
-        cur.execute(sql,(name,content,key1,key2,classname,picname))
+        cur.execute(sql,(name,content,num,key1,key2,classname,picname))
         db.commit()
         db.close()
         flash('Update successfully') 
