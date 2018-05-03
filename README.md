@@ -1,9 +1,17 @@
 # webFlask
 学生信息管理系统初步
+
 # 环境配置：
 python3.6.3
 
 mysql  Ver 14.14 Distrib 5.7.19, for macos10.12
+
+需要flask框架支持
+
+pip install Flask
+
+# 如何运行项目
+python3 flaskr.py
 
 # 目前实现功能：
 
