@@ -252,5 +252,7 @@ def find_class():
 
 if __name__ == '__main__':
     app.debug = True
+    app.template_folder = '../templates'
+    app.static_folder = '../static'
     app.run()
 
