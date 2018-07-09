@@ -1,8 +1,13 @@
-mysql:
-    image: mysql:14.14
-    ports:
-        - "3306:3306"
-    environment:
-        - MYSQL_ROOT_PASSWORD=fengyufei123
+#mysql:
+#    image: mysql:14.14
+#    ports:
+#        - "3306:3306"
+#    environment:
+#        - MYSQL_ROOT_PASSWORD=fengyufei123
+#
 
+webapp:
+    image: webapp:1.0
+    ports:
+        - "5000:5000"
 
