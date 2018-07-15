@@ -248,6 +248,7 @@ def find_info():
 def find_class():
     flash('hold on....')
     return render_template('class.html')
+
     pass
 
 if __name__ == '__main__':
