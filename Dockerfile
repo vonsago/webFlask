@@ -17,6 +17,3 @@ FROM mysql:5.7.19 as mydb
 
 ENV MYSQL_ROOT_PASSWORD fengyufei123
 
-RUN mysql -u root -pfengyufei123 -h localhost -P 3306 \
-        && create database admintest \
-        && exit
