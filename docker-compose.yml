@@ -2,11 +2,12 @@ mysql:
     image: mysql:5.7.19
     ports:
         - "3306:3306"
+    volumes:
+        - ./my.cnf:/etc/mysql/my.cnf
     environment:
         - MYSQL_ROOT_PASSWORD=fengyufei123
-
-webapp:
-    image: webapp:1.0
-    ports:
-        - "5000:5000"
-
+          #webapp:
+          #    image: webapp:1.0
+          #    ports:
+          #        - "5000:5000"
+          #
