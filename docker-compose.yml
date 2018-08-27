@@ -4,6 +4,7 @@ mysql:
         - "3306:3306"
     volumes:
         - ./my.cnf:/etc/mysql/my.cnf
+        - ./mysqldata:/var/lib/mysql
     environment:
         - MYSQL_ROOT_PASSWORD=fengyufei123
           #webapp:
