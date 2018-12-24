@@ -25,7 +25,7 @@ app.secret_key = "super secret key"
 
 base_ip = '127.0.0.1'
 base_user = 'root'
-base_pwd = 'dangerous'
+base_pwd = 'fengyufei123'
 base_db = 'admintest'
 
 

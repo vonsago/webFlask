@@ -6,7 +6,7 @@ mysql:
         - ./my.cnf:/etc/mysql/my.cnf
         - ./mysqldata:/var/lib/mysql
     environment:
-        - MYSQL_ROOT_PASSWORD=fengyufei123
+        - MYSQL_ROOT_PASSWORD=dangerous
           #webapp:
           #    image: webapp:1.0
           #    ports:
