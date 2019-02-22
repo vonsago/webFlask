@@ -9,6 +9,12 @@ mysql  Ver 14.14 Distrib 5.7.19, for macos10.12
 
     pipenv install
 # 如何运行项目
+数据库导入：
+
+    mysql>create database admintest;
+    mysql -u root -pfengyufei123 admintest < admintest.sql
+
+程序入口：
 python3 flaskr.py
 
 # 目前实现功能：
